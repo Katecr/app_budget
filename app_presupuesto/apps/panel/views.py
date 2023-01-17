@@ -3,9 +3,8 @@ from django.http.response import HttpResponse
 from django.views.generic import TemplateView
 
 
-from openpyxl import Workbook, load_workbook
+from openpyxl import Workbook, load_workbook 
 
-from .models import FormBudget
 
 
 class IndexView(TemplateView):
@@ -52,6 +51,7 @@ def list(request):
 		icbf = worksheet['M2'].value
 		total_aportes = worksheet['N2'].value
 		tipo_presupuesto = worksheet['O2'].value
+		aux_transporte = worksheet['P2'].value
 
 		wb = Workbook()
 		ws = wb.active
@@ -74,10 +74,11 @@ def list(request):
 	
 
 		if tipo_presupuesto == 51 or tipo_presupuesto == '51':
-			for i in range(1,15):
+			for i in range(1,16):
 				if i == 1:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = salario / 12
+						total_salario = round(salario / 12)
+						ws.cell(row = cont, column = j).value = round(total_salario)
 					cont += 1
 				elif i == 2:
 					for j in range(1,13):
@@ -89,23 +90,28 @@ def list(request):
 					cont += 1
 				elif i == 4:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = ''
+						total_aux_transporte = round(aux_transporte / 12)
+						ws.cell(row = cont, column = j).value = round(total_aux_transporte)
 					cont += 1
 				elif i == 5:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = cesantias / 12
+						total_cesantias = round(cesantias / 12)
+						ws.cell(row = cont, column = j).value = round(total_cesantias)
 					cont += 1
 				elif i == 6:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = int_cesantias / 12
+						total_int_cesantias = int_cesantias / 12
+						ws.cell(row = cont, column = j).value = round(total_int_cesantias)
 					cont += 1
 				elif i == 7:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = prima / 12
+						total_prima = prima / 12
+						ws.cell(row = cont, column = j).value = round(total_prima)
 					cont += 1
 				elif i == 8:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = vacaciones / 12
+						total_vacaciones = vacaciones / 12
+						ws.cell(row = cont, column = j).value = round(total_vacaciones)
 					cont += 1
 				elif i == 9:
 					for j in range(1,13):
@@ -113,33 +119,40 @@ def list(request):
 					cont += 1
 				elif i == 10:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = arl / 12
+						total_arl = arl / 12
+						ws.cell(row = cont, column = j).value = round(total_arl)
 					cont += 1
 				elif i == 11:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = salud / 12
+						total_salud = salud / 12
+						ws.cell(row = cont, column = j).value = round(total_salud)
 					cont += 1
 				elif i == 12:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = pension / 12
+						total_pension = pension / 12
+						ws.cell(row = cont, column = j).value = round(total_pension)
 					cont += 1
 				elif i == 13:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = comfama / 12
+						total_comfama = comfama / 12
+						ws.cell(row = cont, column = j).value = round(total_comfama)
 					cont += 1
 				elif i == 14:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = icbf / 12
+						total_icbf = icbf / 12
+						ws.cell(row = cont, column = j).value = round(total_icbf)
 					cont += 1
 				elif i == 15:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = sena/12
+						total_sena = sena/12
+						ws.cell(row = cont, column = j).value = round(total_sena)
 					cont += 1
 		elif tipo_presupuesto == 72 or tipo_presupuesto == '72':
-			for i in range(1,14):
+			for i in range(1,15):
 				if i == 1:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = salario / 12
+						total_salario = round(salario / 12)
+						ws.cell(row = cont, column = j).value = round(total_salario)
 					cont += 1
 				elif i == 2:
 					for j in range(1,13):
@@ -147,19 +160,23 @@ def list(request):
 					cont += 1
 				elif i == 3:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = cesantias / 12
+						total_cesantias = round(cesantias / 12)
+						ws.cell(row = cont, column = j).value = round(total_cesantias)
 					cont += 1
 				elif i == 4:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = int_cesantias / 12
+						total_int_cesantias = int_cesantias / 12
+						ws.cell(row = cont, column = j).value = round(total_int_cesantias)
 					cont += 1
 				elif i == 5:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = prima / 12
+						total_prima = prima / 12
+						ws.cell(row = cont, column = j).value = round(total_prima)
 					cont += 1
 				elif i == 6:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = vacaciones / 12
+						total_vacaciones = vacaciones / 12
+						ws.cell(row = cont, column = j).value = round(total_vacaciones)
 					cont += 1
 				elif i == 7:
 					for j in range(1,13):
@@ -171,27 +188,33 @@ def list(request):
 					cont += 1
 				elif i == 9:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = arl / 12
+						total_arl = arl / 12
+						ws.cell(row = cont, column = j).value = round(total_arl)
 					cont += 1
 				elif i == 10:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = salud / 12
+						total_salud = salud / 12
+						ws.cell(row = cont, column = j).value = round(total_salud)
 					cont += 1
 				elif i == 11:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = pension / 12
+						total_pension = pension / 12
+						ws.cell(row = cont, column = j).value = round(total_pension)
 					cont += 1
 				elif i == 12:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = comfama / 12
+						total_comfama = comfama / 12
+						ws.cell(row = cont, column = j).value = round(total_comfama)
 					cont += 1
 				elif i == 13:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = icbf / 12
+						total_icbf = icbf / 12
+						ws.cell(row = cont, column = j).value = round(total_icbf)
 					cont += 1
 				elif i == 14:
 					for j in range(1,13):
-						ws.cell(row = cont, column = j).value = sena / 12
+						total_sena = sena/12
+						ws.cell(row = cont, column = j).value = round(total_sena)
 					cont += 1
 
 		name_file = "ReportePresupuesto.xlsx"
